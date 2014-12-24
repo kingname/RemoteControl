@@ -34,3 +34,6 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 
 ##使用
 使用主人邮箱往奴隶邮箱发送邮件，标题为_config.ini中的任一命令的名字。例如，使用邮件发送：music到奴隶邮箱，即可使电脑放音乐。
+
+##编译
+	python mysetup.py py2exe
