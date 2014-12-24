@@ -58,7 +58,7 @@ def DealCommand(subject):
 def send_mail(subject,flag,body='Success'):
         msg = MIMEText(body,'plain','utf-8')#中文需参数‘utf-8’，单字节字符不需要
         msg['Subject'] = subject
-        msg['from']='kingname_auto0@sina.com'
+        msg['from'] = username
         handle = smtplib.SMTP('smtp.sina.com', 25)
         handle.login(username,password)
         if flag == 'slave':
