@@ -97,7 +97,7 @@ def init():
 if __name__=='__main__':
         init()
         while 1:
-                time.sleep(time_limit) #每5分钟检查一次邮箱
+                time.sleep(int(time_limit)) #每5分钟检查一次邮箱
                 accp_mail()
 
 
