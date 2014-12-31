@@ -6,8 +6,12 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import run
 from apiclient import errors
+import time
+from auto2 import send_mail
 import base64
 import email
+
+last_email = ''
 
 
 # Path to the client_secret.json file downloaded from the Developer Console
@@ -95,9 +99,35 @@ def GetMessage(service, user_id, msg_id):
   except errors.HttpError, error:
     print 'An error occurred: %s' % error
 
-a = ListMessagesWithLabels(gmail_service,'me')[0]['id']
-b = GetMessage(gmail_service,'me',a)
-print b['snippet']
-print b['payload']['headers'][3]['value']
+def init():
+  global last_email
+  last_email = ListMessagesWithLabels(gmail_service,'me')[0]['id']
+
+def isnew():
+  global last_email
+  themail = ListMessagesWithLabels(gmail_service,'me')
+  for each in themail:
+    if each['id'] != last_email:
+      tosend(each['id'])
+    else:
+      break
+  last_email = themail[0]['id']
+
+def tosend(id):
+  b = GetMessage(gmail_service,'me',id)
+  content =  b['snippet']
+  sender =  b['payload']['headers'][3]['value']
+  subject = b['payload']['headers'][12]['value']
+  body = sender + '\n' + content
+  send_mail(subject,body)
+  print subject
+  print body
+  print '============================'
+
+if __name__=='__main__':
+    init()
+    while 1:
+      time.sleep(3600) #每一小时检查一次邮箱
+      isnew()
 
 
