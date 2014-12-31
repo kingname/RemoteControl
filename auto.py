@@ -8,6 +8,9 @@ import re
 import win32api
 from email.mime.text import MIMEText
 
+__Author__ = 'kingname'
+__Verson__ = 0.1
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
