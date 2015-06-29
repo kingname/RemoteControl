@@ -24,14 +24,14 @@ class MCC(object):
         self.configReader = configReader(self.CONFIGPATH)
         commandDict = self.configReader.getDict(self.KEY_COMMAND)
         openDict = self.configReader.getDict(self.KEY_OPEN)
-        self.limitTime = self.configReader.readConfig(self.KEY_BOSS, self.KEY_TIMELIMIT)
+        self.timeLimit = self.configReader.readConfig(self.KEY_BOSS, self.KEY_TIMELIMIT)
         self.excutor = executor(commandDict, openDict)
         self.toRun()
 
     def toRun(self):
         while True:
             self.run()
-            time.sleep(self.limitTime)
+            time.sleep(self.timeLimit)
 
     def run(self):
         mailBody = self.mailHelper.acceptMail()
