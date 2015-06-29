@@ -27,6 +27,7 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 * password为奴隶邮箱的密码
 * 必须要先在新浪邮箱的账户控制中允许客服端收件，并打开POP3和SMTP协议，否则会出错。如图所示：
 ![](http://7sbpmp.com1.z0.glb.clouddn.com/QQ截图20150630000146.png)
+
 ###Boss
 * mail为主人邮箱号
 * timelimit控制程序检查邮箱的评论，默认为300秒，也就是5分钟
