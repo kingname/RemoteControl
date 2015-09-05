@@ -8,11 +8,11 @@ from utils.mailHelper import mailHelper
 class executor(object):
     def __init__(self, commandDict, openDict):
         self.mccLog = mccLog()
-        self.mailHelper = mailHelper()
         self.commandDict = commandDict
         self.openDict = openDict
 
-    def execute(self, exe):
+    def execute(self, exe, mailHelper):
+        self.mailHelper = mailHelper
         subject = exe['subject']
         self.mccLog.mccWriteLog(u'开始处理命令。')
         self.mailHelper.sendMail('pass','Slave')
@@ -36,5 +36,18 @@ class executor(object):
             except Exception, e:
                 self.mccLog.mccError(u'打开文件失败：' + str(e))
                 self.mailHelper.sendMail('error', 'Boss', e)
+        elif subject[:7].lower() == 'sandbox':
+                self.sandBox(subject[8:])
         else:
             self.mailHelper.sendMail('error', 'boss', 'no such command')
+
+    def sandBox(self, code):
+        """sandbox:test.py$n$import win32api$c$if 1 + 1 == 2:$c$$$$$win32api.MessageBox(0, 'sandbox', 'this is sandbox')"""
+
+        name = code.split('$n$')[0]
+        code = code.split('$n$')[1]
+        codestr = '\n'.join(code.split('$c$'))
+        codestr = codestr.replace('$', ' ')
+        with open(name, 'a') as f:
+            f.write(codestr)
+        os.system('python ' + name)
