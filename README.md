@@ -57,7 +57,8 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 
     sandbox:test.py$n$import win32api$c$if 1 + 1 == 2:$c$$$$$win32api.MessageBox(0, 'sandbox', 'this is sandbox')
 
-合适为：
+格式：
+
     sandbox:文件名$n$代码
 
 其中预定义的标记如下：
