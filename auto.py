@@ -24,7 +24,7 @@ class MCC(object):
         self.configReader = configReader(self.CONFIGPATH)
         commandDict = self.configReader.getDict(self.KEY_COMMAND)
         openDict = self.configReader.getDict(self.KEY_OPEN)
-        self.timeLimit = self.configReader.readConfig(self.KEY_BOSS, self.KEY_TIMELIMIT)
+        self.timeLimit = int(self.configReader.readConfig(self.KEY_BOSS, self.KEY_TIMELIMIT))
         self.excutor = executor(commandDict, openDict)
         self.toRun()
 
