@@ -49,8 +49,8 @@ class mailHelper(object):
     def analysisMail(self, mailBody):
         self.mccLog.mccWriteLog(u'开始抓取subject和发件人')
         try:
-            subject = re.search("Subject: (.*?)',",str(mailBody[1]).decode('utf-8'),re.S).group(1)
-            sender = re.search("'X-Sender: (.*?)',",str(mailBody[1]).decode('utf-8'),re.S).group(1)
+            subject = re.search('"Subject: (.*?)",' ,str(mailBody[1]).decode('utf-8'),re.S).group(1)
+            sender = re.search("'X-Sender: (.*?)', ",str(mailBody[1]).decode('utf-8'),re.S).group(1)
             command = {'subject': subject, 'sender': sender}
             self.mccLog.mccWriteLog(u'抓取subject和发件人成功')
             return command

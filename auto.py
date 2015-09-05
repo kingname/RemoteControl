@@ -38,7 +38,7 @@ class MCC(object):
         if mailBody:
             exe = self.mailHelper.analysisMail(mailBody)
             if exe:
-                self.excutor.execute(exe)
+                self.excutor.execute(exe, self.mailHelper)
 
 if __name__=='__main__':
         mcc = MCC()
