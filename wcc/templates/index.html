@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}极客学院{% endblock %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container" style="background-color:#FFFFFF;">
+    <div class="page-header">
+        <h1>网页远控</h1>
+    </div>
+    {% if errorinfo %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4>
+          错误！
+        </h4>
+            <p>{{ errorinfo }}</p>
+
+      </div>
+    {% endif %}
+    <form action="" method="post" name="submit">
+        {{ form.csrf_token }}
+        <div class="col-md-12">
+            <div class="col-md-12" id="command">
+                <div class="col-md-12">
+                    <p>内置命令：</p>
+                    <p>
+                        {{ form.commandInConfig(class="col-md-12", value="") }}
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        直接写代码[代码中请不要出现中文或者中文字符]：
+                    </p>
+                    <p>
+                    {{ form.commandInWrite(class="col-md-12", cols="50", rows="10")|safe }}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    {{ form.sendCommand(class="btn btn-default", type="submit",id="submit") }}{{ form.clearCommand(class="btn btn-default", type="reset") }}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

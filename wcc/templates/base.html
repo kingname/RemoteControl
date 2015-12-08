@@ -1,0 +1,57 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}网页远控{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+
+    {%- block styles %}
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <style type="text/css">
+    body {
+    background-color:#f3f8f1;
+     }
+    </style>
+    {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+    {% block navbar %}
+    <div class="navbar navbar-inverse" role="navigation" >
+  <div class="container" >
+    <div class="navbar-header" >
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
+        <span class="sr-only" >网页远控导航条</span>
+        <span class="icon-bar" ></span>
+        <span class="icon-bar" ></span>
+        <span class="icon-bar" ></span>
+      </button>
+      <a class="navbar-brand" href="/" >网页远控</a>
+    </div>
+  <div class="navbar-collapse collapse" >
+    <ul class="nav navbar-nav" >
+      <li><a href="/" >首页</a></li>
+    </ul>
+ </div>
+</div>
+</div>
+    {%- endblock navbar %}
+    {% block content -%}
+    {%- endblock content %}
+
+    {% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    {%- endblock scripts %}
+    {%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}
