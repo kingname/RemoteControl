@@ -36,7 +36,7 @@ class Server:
                 if not addr[0] in self.socketPool:
                     name = addr[0]
                 else:
-                    name = addr[0] + str(random.randint(1000, 9999))
+                    name = addr[0] + '-' + str(random.randint(1000, 9999))
                 oneSock = SocketThread.SocketThread(conn, name, self.socketPool)
                 oneSock.setDaemon(True)
                 oneSock.start()

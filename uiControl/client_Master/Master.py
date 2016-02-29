@@ -3,7 +3,7 @@
 import wx
 from MasterSocket import MasterSocket
 
-SERVER = '128.199.151.202'
+SERVER = '192.168.2.100'
 PORT = 5000
 
 '''基于Sizer的控件相对布局'''

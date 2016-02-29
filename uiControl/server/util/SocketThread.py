@@ -29,6 +29,10 @@ class SocketThread(threading.Thread):
                     self.analysisCommand(data)
                 else:
                     print u'对方关闭Socket。'
+                    self.lock.acquire()
+                    if self.ip in self.socketPool:
+                        self.socketPool.pop(self.ip)
+                    self.lock.release()
                     break
             except Exception, e:
                 print u'socket 连接中断。'

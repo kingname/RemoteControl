@@ -37,6 +37,7 @@ class Slave(object):
         slave = SlaveSocket.SlaveSocket(self.server['host'], int(self.server['port']), self.commandDict, self.openDict, self.timeout)
         slave.setDaemon(True)
         slave.start()
+        slave.join()
 
 if __name__=='__main__':
         mcc = Slave()
