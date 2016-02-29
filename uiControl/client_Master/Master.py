@@ -3,7 +3,7 @@
 import wx
 from MasterSocket import MasterSocket
 
-SERVER = '127.0.0.1'
+SERVER = '128.199.151.202'
 PORT = 5000
 
 '''基于Sizer的控件相对布局'''
@@ -109,6 +109,7 @@ class Slave(wx.Frame):
             else:
                 print u'请输入命令'
                 return None
+            self.masterSocket.setDaemon(True)
             self.masterSocket.start()
         else:
             print u'请先选择被控端。'
@@ -127,6 +128,7 @@ class Slave(wx.Frame):
     def onRefresh(self, event):
         self.serverList = []
         socketForServerList = MasterSocket(SERVER, PORT, 'listSlave', self.serverList)
+        socketForServerList.setDaemon(True)
         socketForServerList.start()
         socketForServerList.join(timeout=5)
         print u'被控端列表：%s' % str(self.serverList)

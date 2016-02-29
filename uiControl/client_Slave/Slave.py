@@ -35,6 +35,7 @@ class Slave(object):
 
     def run(self):
         slave = SlaveSocket.SlaveSocket(self.server['host'], int(self.server['port']), self.commandDict, self.openDict, self.timeout)
+        slave.setDaemon(True)
         slave.start()
 
 if __name__=='__main__':
