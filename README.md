@@ -18,4 +18,4 @@ MCC(Mail Control Computer) is a software for controlling computers by Mail, and 
 
 UIControl is a remote control software with a UI which is based on wxPython.
 
-You can control the slave computer in the UI of the master. For more information, please see [Readme for UiControl\(https://github.com/kingname/RemoteControl/blob/master/uiControl/README.md).
+You can control the slave computer in the UI of the master. For more information, please see [Readme for UiControl](https://github.com/kingname/RemoteControl/blob/master/uiControl/README.md).
