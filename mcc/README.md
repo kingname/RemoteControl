@@ -18,17 +18,18 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 ###Slave
 
 * pophost填写奴隶邮箱的pop3服务器，例如新浪的pop3服务器为
-	
-		pop.sina.com
+
+  pop.sina.com
 
 * smtphost填写奴隶邮箱的SMTP服务器，例如新浪的SMTP服务器为
 
-	    smtp.sina.com
+
+	smtp.sina.com
 
 * username为奴隶邮箱的邮箱号
 * password为奴隶邮箱的密码
 * 必须要先在新浪邮箱的账户控制中允许客服端收件，并打开POP3和SMTP协议，否则会出错。如图所示：
-![](http://7sbpmp.com1.z0.glb.clouddn.com/QQ截图20150630000146.png)
+  ![](http://7sbpmp.com1.z0.glb.clouddn.com/QQ截图20150630000146.png)
 
 ###Boss
 * mail为主人邮箱号
@@ -36,11 +37,13 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 
 ###Command
 这个section的内容是可以使用Python运行的cmd命令，理论上讲，任何Python可以执行的命令都可以添加到这里。
-		名字 = 命令
+
+	名字 = 命令
 
 ###Open
 这个section下的内容为可以通过Python打开的文件或者内容，例如打开记事本，打开音乐等等。
-		名字 = 地址
+
+	名字 = 地址
 
 ##使用
 ###普通模式
@@ -64,8 +67,16 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 其中预定义的标记如下：
 
     $n$:文件名与代码的分隔符
-	$c$:换行
-	$:空格，4个$连着用表示缩进
+    $c$:换行
+    $:空格，4个$连着用表示缩进
 
 ##编译
 	python mysetup.py py2exe
+
+
+## 视频课程
+
+[微信远控：Python 控制电脑的两种方法](http://www.jikexueyuan.com/course/1962.html)
+
+[微信远控：让微信控制电脑](http://www.jikexueyuan.com/course/2120.html)
+

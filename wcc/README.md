@@ -22,7 +22,7 @@ WCC（Web Control Computer）是一个通过网页控制电脑的程序，用户
 	timelimit = 10
 
 客户端采用轮询的方式查询数据库，timelimit设定轮询的时间间隔，默认为10，单位为秒。
-	
+
 	[Command]
 	shutdown=shutdown -f -s -t 10 -c closing...
 	dir=dir
@@ -59,3 +59,11 @@ WCC（Web Control Computer）是一个通过网页控制电脑的程序，用户
 其中**内置命令** 这一项可以填写在_config.ini中定义的命令。**直接写代码**下面，可以直接贴Python的代码，格式和缩进会自动保留。
 
 填写完成以后，点击**发送命令**按钮，10秒内，远程电脑上就会执行命令了。
+
+
+
+##视频课程
+
+[Flask 快速搭建网站](http://www.jikexueyuan.com/course/2348.html)
+
+[网页控制电脑](http://www.jikexueyuan.com/course/2389.html)
