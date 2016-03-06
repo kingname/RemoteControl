@@ -32,6 +32,8 @@ class SocketThread(threading.Thread):
                     self.lock.acquire()
                     if self.ip in self.socketPool:
                         self.socketPool.pop(self.ip)
+                        print 'pop1'
+                        print self.socketPool
                     self.lock.release()
                     break
             except Exception, e:
@@ -39,6 +41,7 @@ class SocketThread(threading.Thread):
                 self.lock.acquire()
                 if self.ip in self.socketPool:
                     self.socketPool.pop(self.ip)
+                    print 'pop2'
                 self.lock.release()
                 break
 
@@ -59,11 +62,14 @@ class SocketThread(threading.Thread):
         if commandDict:
             commandFrom = commandDict['from']
             if commandFrom == 'master':
+                #下面这一行用来解决第二次课遇到的问题
+                self.socketPool.pop(self.ip)
                 result = self.analysisMasterCommand(commandDict['type'], commandDict['to'], commandDict['command'])
-                if result:
-                    self.sendToMaster(result)
+                print result
+                self.sendToMaster(result)
 
     def getSlaveList(self):
+        print 'into get Slave list'
         self.lock.acquire()
         slaveList = self.socketPool.keys()
         self.lock.release()

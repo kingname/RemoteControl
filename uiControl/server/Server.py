@@ -24,7 +24,8 @@ class Server:
             # 开启socket监听
             self.sock.listen(5)
         except Exception, e:
-            print u'socket 错误: %s' % str(e)
+            print e
+            # print u'socket error: %s' % str(e)
             return None
 
     def dispatch(self):

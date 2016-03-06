@@ -14,6 +14,7 @@ class SlaveSocket(threading.Thread):
         self.sock = None
         self.host = host
         self.port = port
+        self.stop = False
         self.timeout = timeout
         self.executor = executor(commandDict, openDict)
 
@@ -36,7 +37,7 @@ class SlaveSocket(threading.Thread):
             return False
 
     def run(self):
-            while True:
+            while not self.stop:
                 if not self.connected:
                     print u'开始连接...'
                     if self.connect():
@@ -65,10 +66,13 @@ class SlaveSocket(threading.Thread):
             except Exception, e:
                 print u'命令格式不对。'
                 return ''
-            print '----------'
             print str(commandDict)
             commandType = commandDict['type']
             command = commandDict['command']
-            self.executor.execute(commandType, command)
+            if command == 'runaway':
+                self.stop = True
+                self.sock.close()
+            else:
+                self.executor.execute(commandType, command)
 
 

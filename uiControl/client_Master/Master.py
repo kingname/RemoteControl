@@ -2,7 +2,9 @@
 
 import wx
 from MasterSocket import MasterSocket
+import threading
 
+# SERVER = '128.199.151.202'
 SERVER = '192.168.2.100'
 PORT = 5000
 
@@ -11,6 +13,7 @@ class Slave(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, parent=None, id=-1, title=u'极客学院', size=(600, 600))
         self.panel = wx.Panel(self, -1)
+        self.lock = threading.Lock()
         self.Centre()
 
         #定义我们需要的各个控件
@@ -19,7 +22,7 @@ class Slave(wx.Frame):
         writePyStatic = wx.StaticText(self.panel, -1, u'写代码:')
 
         self.commandText = wx.TextCtrl(self.panel, -1, u'')
-        self.writePyText = wx.TextCtrl(self.panel, -1, u'''#-*-coding:utf-8-*-\n#在这写Python代码''',
+        self.writePyText = wx.TextCtrl(self.panel, -1, u'''#-*-coding:utf-8-*-\n#python code here''',
                                   style=wx.TE_MULTILINE, size=(300, 200))
 
         self.send = wx.Button(self.panel, label=u'发送命令')
@@ -127,14 +130,18 @@ class Slave(wx.Frame):
 
     def onRefresh(self, event):
         self.serverList = []
+
         socketForServerList = MasterSocket(SERVER, PORT, 'listSlave', self.serverList)
         socketForServerList.setDaemon(True)
         socketForServerList.start()
-        socketForServerList.join(timeout=5)
-        print u'被控端列表：%s' % str(self.serverList)
+        socketForServerList.join()
+
+        self.lock.acquire()
+        print u'被控端列表111：%s' % str(self.serverList)
         self.server.Clear()
         for each in self.serverList:
             self.server.Append(each)
+        self.lock.release()
 
 if __name__ == "__main__":
     app = wx.App()

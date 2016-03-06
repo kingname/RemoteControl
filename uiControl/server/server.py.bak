@@ -1,9 +1,0 @@
-from util import SocketManager
-
-class Server:
-    def __init__(self):
-        self.socketManager = SocketManager.SocketManager()
-        self.socketManager.watch()
-
-if __name__ == '__main__':
-    Server()
