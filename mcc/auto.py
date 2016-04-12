@@ -1,16 +1,30 @@
 #-*-coding:utf-8 -*-
 
 import time
-import sys
+import logging
 from utils.mailHelper import mailHelper
 from utils.excutor import executor
-from utils.configReader import configReader
+from utils.configReader import ConfigReader
 
 __Author__ = 'kingname'
-__Verson__ = 0.5
+__Verson__ = 0.6
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+logger = logging.getLogger('mcc')
+logger.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+fh = logging.FileHandler('mccLog.log')
+fh.setLevel(logging.DEBUG)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+ch.setFormatter(formatter)
+fh.setFormatter(formatter)
+
+logger.addHandler(ch)
+logger.addHandler(fh)
 
 class MCC(object):
     CONFIGPATH = '_config.ini'
@@ -21,7 +35,7 @@ class MCC(object):
 
     def __init__(self):
         self.mailHelper = mailHelper()
-        self.configReader = configReader(self.CONFIGPATH)
+        self.configReader = ConfigReader(self.CONFIGPATH)
         commandDict = self.configReader.getDict(self.KEY_COMMAND)
         openDict = self.configReader.getDict(self.KEY_OPEN)
         self.timeLimit = int(self.configReader.readConfig(self.KEY_BOSS, self.KEY_TIMELIMIT))
@@ -40,7 +54,7 @@ class MCC(object):
             if exe:
                 self.excutor.execute(exe, self.mailHelper)
 
-if __name__=='__main__':
+if __name__ == '__main__':
         mcc = MCC()
 
 

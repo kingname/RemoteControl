@@ -48,9 +48,9 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 ##使用
 ###普通模式
 
-普通模式可以使用定义好的命令。
+普通模式可以使用定义好的命令。命令请使用#f#结尾。
 
-使用主人邮箱往奴隶邮箱发送邮件，标题为_config.ini中的任一命令的**名字**（等号左边的内容）。例如，想打开记事本，那就使用邮箱发送标题为notepad的邮件。
+使用主人邮箱往奴隶邮箱发送邮件，标题为_config.ini中的任一命令的**名字**（等号左边的内容）。例如，想打开记事本，那就使用邮箱发送标题为notepad#f#的邮件。
 
 ###沙盘模式
 
@@ -58,7 +58,7 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
 
 使用主人邮箱往奴隶邮箱发送命令，例如：
 
-    sandbox:test.py$n$import win32api$c$if 1 + 1 == 2:$c$$$$$win32api.MessageBox(0, 'sandbox', 'this is sandbox')
+    sandbox:test.py$n$import win32api$c$if 1 + 1 == 2:$c$$$$$win32api.MessageBox(0, 'sandbox', 'this is sandbox')#f#
 
 格式：
 
@@ -69,6 +69,7 @@ Python使用Poplib库，周期性访问邮箱，根据邮件主题的相应名�
     $n$:文件名与代码的分隔符
     $c$:换行
     $:空格，4个$连着用表示缩进
+    #f#:结束标志
 
 ##编译
 	python mysetup.py py2exe
